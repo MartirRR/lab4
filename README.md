@@ -61,7 +61,7 @@ resultado = mi_tarea()
 end = time.perf_counter()
 
 elapsed_ms = (end - start) * 1000  # milisegundos
-print(f"Tiempo de ejecución: {elapsed_ms:.2f} ms")
+print(f"Tiempo de ejecución: {elapsed_ms:.4f} ms")
 ```
 
 ## Criterios de Entrega
