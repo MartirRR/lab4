@@ -39,9 +39,11 @@ def busca_cancion(self, titulo_cancion, artista):
 
 - En `main.py` implementa una función que:
   1. Selecciona 5 canciones al azar del catálogo.
-  2. Para cada cancion, ejecuta 5 búsquedas en la **lista enlazada** y mida el tiempo total.
-  3. Para cada cancion, ejecuta 5 búsquedas en el **ABB** y mida el tiempo total.
-  4. Calcula y muestra (en `experiments.md`) los tiempos medios de búsqueda para cada estructura.
+  2. Para cada cancion, ejecuta 5 búsquedas en la **lista enlazada** y mide el tiempo medio de búsqueda.
+  3. Para cada cancion, ejecuta 5 búsquedas en el **ABB** y mide el tiempo medio de búsqueda.
+  4. Calcula y muestra (en `experiments.md`) los tiempos medios de búsqueda para cada canción.
+
+**TIP**: Si no ves mucha diferencia en los tiempos, puedes usar el archivo 1000_canciones.csv 
 
 ```python
 import time
