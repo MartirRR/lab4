@@ -16,9 +16,12 @@
 ### 0. Lógica Genérica del ABB
 - Revisa las clases proporcionadas de AB y ABB y completa las funciones que faltan.  
 - Todas las funciones de búsqueda, agregar o eliminar deben trabajar a nivel de objeto, en nuestro caso `valor = Cancion`.
+- Prueba tus implementaciones
 
 ### 1. Clase Cancion con Métodos "Mágicos"
-- Asegurar que la clase Cancion implemente `__lt__` y `__eq__` basados en el título y artista.  
+- Asegurar que la clase Cancion implemente `__lt__` y `__eq__` basados en el título y artista (orden alfabético). Podemos implementar `__gt__`(greater than)
+  - Primero calculamos si un título es mayor que otro (self.__get_titulo() < otra_cancion.get_titulo())
+  - En caso de que el título sea igual, calculamos la diferencia entre los artistas
 - Garantizar que las comparaciones entre objetos Cancion funcionen de manera consistente.
 
 ### 2. Crea una subclase de ABB para un ABB de Canciones
@@ -38,13 +41,22 @@ def busca_cancion(self, titulo_cancion, artista):
 ### 4. Haz pruebas de busquedas y calcula el tiempo
 
 - En `main.py` implementa una función que:
-  1. Selecciona 5 canciones al azar del catálogo.
+  1. Selecciona 5 canciones al azar del catálogo (puedes hacer un random select 0 a 200/1000 y seleccionarlas por ID).
   2. Para cada cancion, ejecuta 5 búsquedas en la **lista enlazada** y mide el tiempo medio de búsqueda.
   3. Para cada cancion, ejecuta 5 búsquedas en el **ABB** y mide el tiempo medio de búsqueda.
   4. Calcula y muestra (en `experiments.md`) los tiempos medios de búsqueda para cada canción.
 
 **TIP**: Si no ves mucha diferencia en los tiempos, puedes usar el archivo 1000_canciones.csv 
+**TIP2**: (OPCIONAL) Para generar un poco más de aleatoriedad, antes de introducir las canciones en la lista enlazada podríamos hacer un shuffle, para mezclarlas.
+```python
+import random
+# leo mis canciones del archivo y las meto en una lista de python normal (canciones = [])
+random.shuffle(canciones)
+for c in canciones:
+    catalogo.agregar_cancion(c) # aquí debe agregar a lista enlazada y al arbol binario de búsqueda 
+```
 
+Aquí tienes un ejemplo de código para medir tiempos de ejecución
 ```python
 import time
 

@@ -9,7 +9,7 @@ class NodoABB(NodoAB):
         result = None
         if self is not None:
             valor = self.get_valor()
-            if valor_buscado == valor:
+            if valor_buscado == valor: # OJO, para que esto funcione debemos implementar __eq__ en Cancion
                 result = self
             elif valor_buscado < valor: # OJO, para que esto funcione debemos implementar __lt__ (less than) en Cancion
                 if self.get_hijo_izq() is not None:
@@ -28,8 +28,8 @@ class NodoABB(NodoAB):
 
 class ArbolBinarioBusqueda(ArbolBinario):
 
-    def __init__(self, nodoRaiz=None):
-        super().__init__(nodoRaiz)
+    def __init__(self, nodo_raiz=None):
+        super().__init__(nodo_raiz)
 
     def busca_valor(self, valor_buscado):
         raiz = self.get_raiz()
@@ -46,13 +46,3 @@ class ArbolBinarioBusqueda(ArbolBinario):
         raiz = self.get_raiz()
         if raiz is not None:
             raiz.elimina_valor(raiz, valor)
-
-class ArbolCancion(ArbolBinarioBusqueda):
-
-    def __init__(self, nodoRaiz=None):
-        super().__init__(nodoRaiz)
-
-    def busca_cancion(self, titulo_cancion, artista):
-        raiz = self.get_raiz()
-        # cancion = Cancion(titulo_cancion,artista,...) # completar creando una cancion temporal para ser buscada (el resto de valores no hacen falta)
-        # return raiz.busca_valor(cancion)
