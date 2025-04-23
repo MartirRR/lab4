@@ -61,7 +61,12 @@ class NodoAB:
             self.__hijoDer.preorden()
 
     def postorden(self):
-       pass
+        if self.__hijoIzq is not None:
+            self.__hijoIzq.postorden()
+        if self.__hijoDer is not None:
+            self.__hijoDer.postorden()
+        
+
 
     def inorden(self):
         pass

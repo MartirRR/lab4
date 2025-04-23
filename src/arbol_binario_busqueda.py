@@ -20,7 +20,9 @@ class NodoABB(NodoAB):
         return result
 
     def inserta_valor(self, nodo, nuevo_nodo):
-        pass
+        if nuevo_nodo.get_valor() < nodo.get_valor():
+            if self.__hijoIzq is None:
+                self.srt_hijo_izq(nuevo_nodo)
 
     def elimina_valor(self, nodo, valor):
         pass
