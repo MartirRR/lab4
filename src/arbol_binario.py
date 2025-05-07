@@ -42,7 +42,11 @@ class NodoAB:
             self.__hijoDer = nuevo_nodo
 
     def tamano(self):
-        pass
+        izq = self.__hijoIzq.tamano() if self.__hijoIzq is not None else 0
+        der = self.__hijoDer.tamano() if self.__hijoDer is not None else 0
+        tamaño = izq + der 
+        return 1 + izq + der
+    
 
     def dibuja(self, prefijo=""):
         if self is not None:
@@ -65,20 +69,44 @@ class NodoAB:
             self.__hijoIzq.postorden()
         if self.__hijoDer is not None:
             self.__hijoDer.postorden()
+        if self.__valor is not None:
+            print(self, end= " ")
         
 
 
     def inorden(self):
-        pass
+        if self.__hijoIzq is not None:
+            self.__hijoIzq.inorden()
+        if self.__valor is not None:
+            print(self, end=" ")
+        if self.__hijoDer is not None:
+            self.__hijoDer.inorden()
 
     def lista_preorden(self, lista_previa):
-        pass
+        lista_previa.append(self.__valor)
+        if self.__hijoIzq is not None:
+            self.__hijoIzq.lista_preorden(lista_previa)
+        if self.__hijoDer is not None:
+            self.__hijoDer.lista_preorden(lista_previa)
+        return lista_previa
+
 
     def lista_postorden(self, lista_previa):
-        pass
+        if self.__hijoIzq is not None:
+            self.__hijoIzq.lista_postorden(lista_previa)
+        if self.__hijoDer is not None:
+            self.__hijoDer.lista_postorden(lista_previa)
+        lista_previa.append(self.__valor)
+        return lista_previa
 
     def lista_inorden(self, lista_previa):
-        pass
+        if self.__hijoIzq is not None:
+            self.__hijoIzq.lista_inorden(lista_previa)
+        lista_previa.append(self.__valor)
+        if self.__hijoDer is not None:
+            self.__hijoDer.lista_inorden(lista_previa)
+        return lista_previa
+
 
 class ArbolBinario:
 
@@ -124,3 +152,5 @@ class ArbolBinario:
     def lista_inorden(self):
         raiz = self.__raiz
         return raiz.lista_inorden(lista_previa=[])
+    
+

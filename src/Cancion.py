@@ -100,6 +100,7 @@ class Cancion:
 
 
     def __eq__(self, otra_cancion):
-        return self.get_id() == otra_cancion.get_id()
+        return self.get_titulo() == otra_cancion.get_titulo() and self.get_artista() == otra_cancion.get_artista() and self.get_album() == otra_cancion.get_album()
+    
     
         

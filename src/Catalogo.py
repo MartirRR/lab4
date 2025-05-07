@@ -1,5 +1,8 @@
 from lista_enlazada import *
 from Cancion import Cancion
+from arbol_binario import *
+from arbol_binario_busqueda import *
+
 class Catalogo:
     def __init__(self):
         self.__actuales = ListaEnlazada()
