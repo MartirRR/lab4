@@ -5,6 +5,7 @@ from Cancion import *
 from ListaReproduccion import *
 from Usuario import *
 from datetime import date
+import random
 
 def mostrar(lista):
     for elemento in lista:
@@ -155,6 +156,48 @@ def recomendaciones(catalogo, lista_usuarios):
 def busqueda_inteligente(artista, catalogo):
     canciones_artista = catalogo.buscar_artista(artista)
     return canciones_artista           
+
+def prueba_velocidad(catalogo):
+    lista = catalogo.get_actuales()
+    lista_abb = catalogo.get_actualesABB()
+
+    tamano = len(lista.to_list())
+    if tamano < 5:
+        print("No hay suficientes canciones para probar la velocidad")
+        return
+    ids = []
+    nodo = catalogo.get_actuales().get_cabeza()
+    while nodo is not None:
+        ids.append(nodo.get_dato().get_id())
+        nodo = nodo.get_sig()
+    ids_random = random.sample(ids, 5)
+
+    for id in ids_random:
+        cancion = catalogo.buscar_id(id)
+        if cancion is None:
+            continue
+        titulo = cancion.get_titulo()
+        artista = cancion.get_artista()
+
+        tiempo_lista_enlazada = []
+        for i in range(5):
+            inicio = time.perf_counter()
+            i = catalogo.buscar_id(id)
+            fin = time.perf_counter()
+            tiempo_lista_enlazada.append(fin - inicio)
+
+        tiempos_ABB = []
+        for i in range(5):
+            inicio = time.perf_counter()
+            i = catalogo.buscar_titulo_artista_ABB(titulo, artista)
+            fin = time.perf_counter()
+            tiempos_ABB.append(fin - inicio)
+
+        print(f"Canción: {id} - {titulo} - {artista}")
+        print(f"Tiempo de búsqueda en lista enlazada: {sum(tiempo_lista_enlazada) / 5:.8f} segundos")
+        print(f"Tiempo de búsqueda en ABB: {sum(tiempos_ABB) / 5:.8f} segundos")
+
+
 
 
 def opcion_1_inicio_sesion():
@@ -1845,6 +1888,7 @@ if __name__ == "__main__":
         print("4. Gestionar usuarios")
         print("5. Recomendaciones")
         print("6. Salir")
+        print("7. Tiempos de ejecución")
     
         try:
             opcion = int(input("Introduce la opción a utilizar: "))
@@ -1878,6 +1922,9 @@ if __name__ == "__main__":
             guardado_ficheros(catalogo, listas_publicas, lista_usuarios)
             break
     
+        elif opcion == 8:
+            prueba_velocidad()
+
         else:
             print("Opción inválida. Intrduce una opción del menú")
 

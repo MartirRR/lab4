@@ -4,10 +4,10 @@ from arbol_binario import *
 from arbol_binario_busqueda import *
 
 class Catalogo:
-    def __init__(self):
-        self.__actuales = ListaEnlazada()
-        self.__eliminadas = ListaEnlazada()
-        
+    def __init__(self, actuales = ListaEnlazada(), eliminadas = ListaEnlazada(), actualesABB = ArbolCancion()):
+        self.__actuales = actuales
+        self.__eliminadas = eliminadas
+        self.__actualesABB = actualesABB
 
     #Getters:
     def get_actuales(self):
@@ -16,6 +16,9 @@ class Catalogo:
     def get_eliminadas(self):
         return self.__eliminadas
     
+    def get_acutualesABB(self):
+        return self.__actualesABB
+    
     #Setters:
     def set_actuales(self, actuales):
         self.__actuales = actuales
@@ -23,7 +26,8 @@ class Catalogo:
     def set_actuales(self, eliminadas):
         self.__eliminadas = eliminadas
         
-
+    def set_actualesABB(self, actualesABB):
+        self.__actualesABB = actualesABB
 
     #Métodos:
     def agregar_cancion(self, cancion):
@@ -43,6 +47,8 @@ class Catalogo:
             else:
                 cancion.set_id(self.__actuales.get_tamano() + self.__eliminadas.get_tamano()+ 1)
                 self.__actuales.anade_elemento_cabeza(cancion)
+                self.__actualesABB.insertar(cancion)
+                return True
        
 
     def mostrar_catalogo(self):
@@ -56,7 +62,9 @@ class Catalogo:
             if isinstance(cancion, Cancion):
                 self.__actuales.elimina_elemento(cancion)
                 self.__eliminadas.anade_elemento_cabeza(cancion)
-                return True
+                self.__actualesABB.eliminar_cancion(cancion)
+                return 
+            
 
     def buscar_artista(self, artista):
         # artista =(input("Introduce el artista: "))
@@ -115,3 +123,6 @@ class Catalogo:
             nodo = nodo.get_sig()
         return ides
         
+
+    def buscar_titulo_artista_ABB(self, titulo, artista):
+        return self.__actualesABB.busca_cancion(titulo, artista)

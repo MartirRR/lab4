@@ -42,10 +42,15 @@ class NodoAB:
             self.__hijoDer = nuevo_nodo
 
     def tamano(self):
-        izq = self.__hijoIzq.tamano() if self.__hijoIzq is not None else 0
-        der = self.__hijoDer.tamano() if self.__hijoDer is not None else 0
-        tamaño = izq + der 
-        return 1 + izq + der
+        if self.__valor is None:
+            return 0
+        else:
+            tamano = 1
+            if self.__hijoIzq is not None:
+                tamano += self.__hijoIzq.tamano()
+            if self.__hijoDer is not None:
+                tamano += self.__hijoDer.tamano()
+            return tamano
     
 
     def dibuja(self, prefijo=""):
@@ -83,30 +88,36 @@ class NodoAB:
             self.__hijoDer.inorden()
 
     def lista_preorden(self, lista_previa):
-        lista_previa.append(self.__valor)
+        
+        if self.__valor is not None:
+            lista_previa.append(self)
+        
         if self.__hijoIzq is not None:
             self.__hijoIzq.lista_preorden(lista_previa)
+        
         if self.__hijoDer is not None:
             self.__hijoDer.lista_preorden(lista_previa)
         return lista_previa
 
 
     def lista_postorden(self, lista_previa):
+    
         if self.__hijoIzq is not None:
             self.__hijoIzq.lista_postorden(lista_previa)
         if self.__hijoDer is not None:
             self.__hijoDer.lista_postorden(lista_previa)
-        lista_previa.append(self.__valor)
+        if self.__valor is not None:
+            lista_previa.append(self)
         return lista_previa
 
     def lista_inorden(self, lista_previa):
         if self.__hijoIzq is not None:
-            self.__hijoIzq.lista_inorden(lista_previa)
-        lista_previa.append(self.__valor)
+            lista_previa = self.__hijoIzq.lista_inorden(lista_previa)
         if self.__hijoDer is not None:
-            self.__hijoDer.lista_inorden(lista_previa)
+            lista_previa = self.__hijoDer.lista_inorden(lista_previa)
+        if self.__valor is not None:
+            lista_previa.append(self)
         return lista_previa
-
 
 class ArbolBinario:
 
@@ -120,8 +131,20 @@ class ArbolBinario:
     def get_raiz(self):
         return self.__raiz
 
+    def set_raiz(self, nodo_raiz):
+        self.__raiz = nodo_raiz
+        if nodo_raiz is None:
+            self.__tamano = 0
+        else:
+            self.__tamano = self.__raiz.tamano()
+    
+    
     def get_tamano(self):
         return self.__tamano
+
+    
+    def set_tamano(self, tamano):
+        self.__tamano = tamano
 
     def dibuja_arbol(self):
         if self.__raiz is not None:
