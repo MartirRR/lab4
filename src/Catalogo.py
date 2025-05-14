@@ -16,7 +16,7 @@ class Catalogo:
     def get_eliminadas(self):
         return self.__eliminadas
     
-    def get_acutualesABB(self):
+    def get_actualesABB(self):
         return self.__actualesABB
     
     #Setters:

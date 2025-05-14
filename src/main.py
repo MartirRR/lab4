@@ -180,16 +180,16 @@ def prueba_velocidad(catalogo):
         artista = cancion.get_artista()
 
         tiempo_lista_enlazada = []
-        for i in range(5):
+        for _ in range(5):
             inicio = time.perf_counter()
-            i = catalogo.buscar_id(id)
+            _ = catalogo.buscar_id(id)
             fin = time.perf_counter()
             tiempo_lista_enlazada.append(fin - inicio)
 
         tiempos_ABB = []
-        for i in range(5):
+        for _ in range(5):
             inicio = time.perf_counter()
-            i = catalogo.buscar_titulo_artista_ABB(titulo, artista)
+            _ = catalogo.buscar_titulo_artista_ABB(titulo, artista)
             fin = time.perf_counter()
             tiempos_ABB.append(fin - inicio)
 
@@ -1922,8 +1922,8 @@ if __name__ == "__main__":
             guardado_ficheros(catalogo, listas_publicas, lista_usuarios)
             break
     
-        elif opcion == 8:
-            prueba_velocidad()
+        elif opcion == 7:
+            prueba_velocidad(catalogo)
 
         else:
             print("Opción inválida. Intrduce una opción del menú")

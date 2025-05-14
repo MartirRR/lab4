@@ -100,7 +100,12 @@ class Cancion:
 
 
     def __eq__(self, otra_cancion):
-        return self.get_titulo() == otra_cancion.get_titulo() and self.get_artista() == otra_cancion.get_artista() and self.get_album() == otra_cancion.get_album()
+        return (self.get_titulo().lower() == otra_cancion.get_titulo().lower() and self.get_artista().lower() == otra_cancion.get_artista().lower())
     
-    
+    def __lt__(self, otra_cancion):
+        if self.get_titulo().lower() < otra_cancion.get_titulo().lower():
+            return True 
+        elif self.get_titulo().lower() == otra_cancion.get_titulo().lower():
+            return self.get_artista().lower() < otra_cancion.get_artista().lower()
+        return False
         

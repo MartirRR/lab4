@@ -39,7 +39,7 @@ class NodoABB(NodoAB):
 
         elif nuevo_valor < valor :
             hijo_izq = nuevo_nodo.get_hijo_izq()
-            nodo.set_hijo_izqd(self.inserta_valor(hijo_izq, nuevo_nodo))
+            nodo.set_hijo_izq(self.inserta_valor(hijo_izq, nuevo_nodo))
         
         return nodo
     
@@ -95,7 +95,7 @@ class ArbolCancion(ArbolBinarioBusqueda):
 
     def busca_cancion(self, titulo, artista):
         raiz = self.get_raiz()
-        cancion_buscada = Cancion(titulo, artista)
+        cancion_buscada = Cancion(None,titulo, artista, "", 0, 0)
         return raiz.busca_valor(cancion_buscada)    
     
     def introducir_cancion(self, cancion):
@@ -110,5 +110,5 @@ class ArbolCancion(ArbolBinarioBusqueda):
         if raiz is not None:
             raiz_nueva = raiz.elimina_valor(raiz, cancion)
             self.set_raiz(raiz_nueva)
-            
+
         

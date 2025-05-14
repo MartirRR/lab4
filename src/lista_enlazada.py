@@ -82,3 +82,11 @@ class ListaEnlazada:
         while nodo_actual is not None:
             yield nodo_actual.get_dato()
             nodo_actual = nodo_actual.get_sig()
+
+    def to_list(self):
+        lista = []
+        actual = self.get_cabeza()
+        while actual:
+            lista.append(actual.get_dato())
+            actual = actual.get_sig()
+        return lista
