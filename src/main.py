@@ -195,7 +195,7 @@ def prueba_velocidad(catalogo):
 
         print(f"Canción: {id} - {titulo} - {artista}")
         print(f"Tiempo de búsqueda en lista enlazada: {sum(tiempo_lista_enlazada) / 5:.8f} segundos")
-        print(f"Tiempo de búsqueda para ABB: {sum(tiempos_ABB) / 5:.8f} segundos")
+        print(f"Tiempo de búsqueda de ABB: {sum(tiempos_ABB) / 5:.8f} segundos")
 
 
 
